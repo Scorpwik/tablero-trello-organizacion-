@@ -1,0 +1,52 @@
+/* Misiones de una nave: DESIGN.md §6.7 bloque 7, §6.3 secundario, §6.8 error. */
+
+.boton--secundario {
+  color: var(--color-texto);
+  background: transparent;
+  border-color: var(--color-borde-control);
+}
+
+.misiones-nave {
+  display: grid;
+  gap: var(--espacio-3);
+  justify-items: start;
+}
+
+.misiones-cargando,
+.misiones-vacio {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.lista-misiones {
+  display: grid;
+  gap: var(--espacio-2);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item-mision {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--espacio-3);
+  align-items: baseline;
+  font-size: var(--texto-sm);
+}
+
+.mision-destino {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.mision-fecha {
+  font-family: var(--fuente-cifras);
+  white-space: nowrap;
+}
+
+.mision-duracion {
+  color: var(--color-texto-suave);
+  white-space: nowrap;
+}

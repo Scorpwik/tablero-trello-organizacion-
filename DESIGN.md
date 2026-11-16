@@ -186,6 +186,7 @@ Orden fijo de arriba abajo:
 4. **Contador de misiones.**
 5. **Estado:** «Operativa» en texto suave, o la insignia «En reparación».
 6. **Motivos:** solo si la nave no es apta. Lista en `--texto-sm` con los textos de `MENSAJES_MOTIVO`.
+7. **Misiones de la nave:** Botón secundario «Ver misiones» / «Ocultar misiones». Al abrir, carga bajo demanda: «Cargando misiones…», aviso de error «No se pudieron cargar las misiones.», o «Esta nave no tiene misiones.» si la lista está vacía. Cada misión muestra destino, fecha (`--fuente-cifras`) y duración.
 
 Fondo `--color-superficie`, `--borde`, `--radio-md`, relleno `--espacio-4`, separación interna `--espacio-3`. La flota es una lista (`ul` con un `li` por tarjeta).
 

@@ -76,4 +76,14 @@ async function crear(borrador: BorradorMision, hoy: string): Promise<ResultadoCr
   return { estado: 'creada', mision: aMision(data) };
 }
 
-export const misionesService = { contarDesdeRevision, crear };
+async function listarPorNave(naveId: string): Promise<Mision[]> {
+  const { data, error } = await supabase
+    .from('misiones')
+    .select(COLUMNAS_MISION)
+    .eq('nave_id', naveId)
+    .overrideTypes<FilaMision[], { merge: false }>();
+  if (error) throw new Error(error.message);
+  return (data ?? []).map(aMision);
+}
+
+export const misionesService = { contarDesdeRevision, crear, listarPorNave };
