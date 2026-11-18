@@ -1,3 +1,5 @@
+export type EstadoMision = 'pendiente' | 'completada';
+
 export interface Mision {
   id: string;
   naveId: string;
@@ -5,6 +7,7 @@ export interface Mision {
   fechaDespegue: string; // YYYY-MM-DD
   duracionDias: number; // entero >= 1
   createdAt: string; // ISO 8601
+  estado: EstadoMision;
 }
 
 // Lo que escribe el jefe en el formulario, antes de validar

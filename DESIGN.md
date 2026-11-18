@@ -142,8 +142,8 @@ Contenedor de cada sección. Fondo `--color-superficie`, `--borde`, `--radio-md`
 
 | Variante | Aspecto | Uso |
 | --- | --- | --- |
-| Primario | Fondo `--color-acento`, texto `--color-sobre-acento`, peso 600 | Acción principal del panel: «Registrar nave», «Asignar misión» |
-| Secundario | Fondo transparente, borde `--color-borde-control`, texto `--color-texto` | Acciones de apoyo |
+| Primario | Fondo `--color-acento`, texto `--color-sobre-acento`, peso 600 | Acción principal del panel («Registrar nave», «Asignar misión») y «Confirmar» al completar una misión dentro de la Tarjeta de nave |
+| Secundario | Fondo transparente, borde `--color-borde-control`, texto `--color-texto` | Acciones de apoyo: «Ver misiones», «Completar», «Cancelar» |
 
 - Alto mínimo 40 px, relleno horizontal `--espacio-4`, `--radio-sm`.
 - **Enviando:** el botón se deshabilita y baja su opacidad a 0.6, sin cambiar de ancho.
@@ -186,7 +186,7 @@ Orden fijo de arriba abajo:
 4. **Contador de misiones.**
 5. **Estado:** «Operativa» en texto suave, o la insignia «En reparación».
 6. **Motivos:** solo si la nave no es apta. Lista en `--texto-sm` con los textos de `MENSAJES_MOTIVO`.
-7. **Misiones de la nave:** Botón secundario «Ver misiones» / «Ocultar misiones». Al abrir, carga bajo demanda: «Cargando misiones…», aviso de error «No se pudieron cargar las misiones.», o «Esta nave no tiene misiones.» si la lista está vacía. Cada misión muestra destino, fecha (`--fuente-cifras`) y duración.
+7. **Misiones de la nave:** Botón secundario «Ver misiones» / «Ocultar misiones». Al abrir, carga bajo demanda: «Cargando misiones…», aviso de error «No se pudieron cargar las misiones.», o «Esta nave no tiene misiones.» si la lista está vacía. Cada misión muestra destino, fecha (`--fuente-cifras`) y duración. Una misión pendiente con despegue hoy o pasado lleva un Botón secundario «Completar»; una con despegue futuro no. La completada muestra la insignia «Completada» y ninguna acción. «Completar» abre, dentro de esa misión, el campo «Combustible restante», el Botón primario «Confirmar» y el secundario «Cancelar». Mientras el formulario está abierto, el «Completar» de las demás misiones queda deshabilitado. Al enviar, «Confirmar» pasa a «Guardando…» y se deshabilita junto con «Cancelar», sin cambiar de ancho. El aviso «Misión completada.» va debajo de esa misión; «No se pudo completar la misión.» va debajo de los botones, con el formulario abierto.
 
 Fondo `--color-superficie`, `--borde`, `--radio-md`, relleno `--espacio-4`, separación interna `--espacio-3`. La flota es una lista (`ul` con un `li` por tarjeta).
 

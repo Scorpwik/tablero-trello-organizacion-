@@ -2,7 +2,13 @@ import { supabase } from '../lib/supabase';
 import { puedeRecibirMision } from '../dominio/aptitud';
 import { validarMision } from '../dominio/mision';
 import { aNave, COLUMNAS_NAVE, type FilaNave } from './navesService';
-import type { BorradorMision, ErroresMision, Mision, MotivoRechazo } from '../types/mision';
+import type {
+  BorradorMision,
+  EstadoMision,
+  ErroresMision,
+  Mision,
+  MotivoRechazo,
+} from '../types/mision';
 import type { Nave } from '../types/nave';
 
 interface FilaMision {
@@ -12,6 +18,7 @@ interface FilaMision {
   fecha_despegue: string;
   duracion_dias: number;
   created_at: string;
+  estado: string;
 }
 
 export type ResultadoCrearMision =
@@ -19,9 +26,16 @@ export type ResultadoCrearMision =
   | { estado: 'datos_invalidos'; errores: ErroresMision }
   | { estado: 'nave_no_apta'; motivos: MotivoRechazo[] };
 
-const COLUMNAS_MISION = 'id, nave_id, destino, fecha_despegue, duracion_dias, created_at';
+const COLUMNAS_MISION = 'id, nave_id, destino, fecha_despegue, duracion_dias, created_at, estado';
+
+function esEstadoMision(valor: string): valor is EstadoMision {
+  return valor === 'pendiente' || valor === 'completada';
+}
 
 function aMision(fila: FilaMision): Mision {
+  if (!esEstadoMision(fila.estado)) {
+    throw new Error(`Estado de misión desconocido: ${fila.estado}`);
+  }
   return {
     id: fila.id,
     naveId: fila.nave_id,
@@ -29,6 +43,7 @@ function aMision(fila: FilaMision): Mision {
     fechaDespegue: fila.fecha_despegue,
     duracionDias: fila.duracion_dias,
     createdAt: fila.created_at,
+    estado: fila.estado,
   };
 }
 
@@ -86,4 +101,14 @@ async function listarPorNave(naveId: string): Promise<Mision[]> {
   return (data ?? []).map(aMision);
 }
 
-export const misionesService = { contarDesdeRevision, crear, listarPorNave };
+async function completar(misionId: string, combustible: number): Promise<Nave> {
+  const { data, error } = await supabase
+    .rpc('completar_mision', { p_mision_id: misionId, p_combustible: combustible })
+    .single()
+    .overrideTypes<FilaNave, { merge: false }>();
+  if (error) throw new Error(error.message);
+  if (data === null) throw new Error('No se pudo completar la misión.');
+  return aNave(data);
+}
+
+export const misionesService = { contarDesdeRevision, crear, listarPorNave, completar };

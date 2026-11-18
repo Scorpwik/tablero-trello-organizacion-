@@ -1,8 +1,28 @@
 import { describe, expect, it } from 'vitest';
-import { validarNave } from './nave';
+import { validarCombustible, validarNave } from './nave';
 import type { BorradorNave } from '../types/nave';
 
 const valido: BorradorNave = { nombre: 'Aurora', clase: 'carguera', combustible: 60 };
+
+describe('validarCombustible', () => {
+  it.each(['', '   '])('rechaza el texto vacío %j', (texto) => {
+    expect(validarCombustible(texto)).toEqual({
+      ok: false,
+      error: 'Indica el combustible de la nave.',
+    });
+  });
+
+  it.each(['120', '24.5', 'abc', '-1', '101'])('rechaza %j', (texto) => {
+    expect(validarCombustible(texto)).toEqual({
+      ok: false,
+      error: 'El combustible debe ser un número entero entre 0 y 100.',
+    });
+  });
+
+  it.each(['0', '40', '100'])('acepta %j', (texto) => {
+    expect(validarCombustible(texto)).toEqual({ ok: true, valor: Number(texto) });
+  });
+});
 
 describe('validarNave', () => {
   it('acepta una nave con todos sus datos válidos', () => {

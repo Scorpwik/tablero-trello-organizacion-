@@ -1,5 +1,12 @@
 import type { BorradorMision, ErroresMision, Mision } from '../types/mision';
 
+export function puedeCompletar(
+  mision: Pick<Mision, 'estado' | 'fechaDespegue'>,
+  hoy: string,
+): boolean {
+  return mision.estado === 'pendiente' && mision.fechaDespegue <= hoy;
+}
+
 // `hoy` llega como YYYY-MM-DD; en ese formato las fechas se comparan bien como texto.
 // Devuelve {} si los datos son válidos. La aptitud de la nave la comprueba puedeRecibirMision.
 export function validarMision(borrador: BorradorMision, hoy: string): ErroresMision {

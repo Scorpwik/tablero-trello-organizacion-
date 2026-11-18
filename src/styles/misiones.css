@@ -1,15 +1,10 @@
-/* Misiones de una nave: DESIGN.md §6.7 bloque 7, §6.3 secundario, §6.8 error. */
-
-.boton--secundario {
-  color: var(--color-texto);
-  background: transparent;
-  border-color: var(--color-borde-control);
-}
+/* Misiones de una nave: DESIGN.md §6.7 bloque 7, §6.3, §6.8. */
 
 .misiones-nave {
   display: grid;
   gap: var(--espacio-3);
   justify-items: start;
+  width: 100%;
 }
 
 .misiones-cargando,
@@ -21,7 +16,7 @@
 
 .lista-misiones {
   display: grid;
-  gap: var(--espacio-2);
+  gap: var(--espacio-3);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -30,23 +25,53 @@
 
 .item-mision {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: var(--espacio-3);
-  align-items: baseline;
-  font-size: var(--texto-sm);
+  gap: var(--espacio-2);
+  width: 100%;
+}
+
+.mision-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-3);
+  align-items: center;
 }
 
 .mision-destino {
   min-width: 0;
   overflow-wrap: anywhere;
+  font-size: var(--texto-sm);
 }
 
 .mision-fecha {
   font-family: var(--fuente-cifras);
+  font-size: var(--texto-sm);
   white-space: nowrap;
 }
 
 .mision-duracion {
   color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
   white-space: nowrap;
+}
+
+.mision-insignia {
+  margin-left: auto;
+  color: var(--color-texto);
+  background: var(--color-superficie-alta);
+}
+
+.formulario-completar {
+  display: grid;
+  gap: var(--espacio-3);
+  width: 100%;
+}
+
+.formulario-completar-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.boton--confirmar {
+  min-width: 8.5rem;
 }

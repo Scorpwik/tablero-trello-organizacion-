@@ -10,10 +10,11 @@ interface Props {
   nave: Nave;
   misiones: number;
   aptitud: Aptitud;
+  onNaveActualizada: (nave: Nave) => void;
 }
 
 // El orden de los bloques es fijo: DESIGN.md §6.7
-export default function TarjetaNave({ nave, misiones, aptitud }: Props) {
+export default function TarjetaNave({ nave, misiones, aptitud, onNaveActualizada }: Props) {
   return (
     <li className="tarjeta-nave">
       <div className="tarjeta-cabecera">
@@ -33,7 +34,7 @@ export default function TarjetaNave({ nave, misiones, aptitud }: Props) {
           ))}
         </ul>
       )}
-      <MisionesNave naveId={nave.id} />
+      <MisionesNave naveId={nave.id} onNaveActualizada={onNaveActualizada} />
     </li>
   );
 }

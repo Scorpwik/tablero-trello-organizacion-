@@ -3,6 +3,7 @@ import {
   describirDuracion,
   describirFechaDespegue,
   ordenarMisiones,
+  puedeCompletar,
   validarMision,
 } from './mision';
 import type { BorradorMision, Mision } from '../types/mision';
@@ -24,6 +25,7 @@ function mision(parcial: Partial<Mision> & Pick<Mision, 'fechaDespegue' | 'creat
     fechaDespegue: parcial.fechaDespegue,
     duracionDias: parcial.duracionDias ?? 1,
     createdAt: parcial.createdAt,
+    estado: parcial.estado ?? 'pendiente',
   };
 }
 
@@ -153,6 +155,24 @@ describe('describirFechaDespegue', () => {
 
   it('calcula mañana al cambiar de año', () => {
     expect(describirFechaDespegue('2027-01-01', '2026-12-31')).toBe('Mañana');
+  });
+});
+
+describe('puedeCompletar', () => {
+  it('permite completar una pendiente con despegue hoy', () => {
+    expect(puedeCompletar({ estado: 'pendiente', fechaDespegue: HOY }, HOY)).toBe(true);
+  });
+
+  it('permite completar una pendiente con despegue pasado', () => {
+    expect(puedeCompletar({ estado: 'pendiente', fechaDespegue: '2026-10-27' }, HOY)).toBe(true);
+  });
+
+  it('no permite completar una pendiente con despegue futuro', () => {
+    expect(puedeCompletar({ estado: 'pendiente', fechaDespegue: '2026-10-29' }, HOY)).toBe(false);
+  });
+
+  it('no permite completar una misión ya completada', () => {
+    expect(puedeCompletar({ estado: 'completada', fechaDespegue: HOY }, HOY)).toBe(false);
   });
 });
 

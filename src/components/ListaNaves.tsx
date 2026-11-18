@@ -48,6 +48,18 @@ export default function ListaNaves({ version }: Props) {
     };
   }, [version]);
 
+  function actualizarNave(nave: Nave) {
+    setFilas((actual) =>
+      actual === null
+        ? actual
+        : actual.map((fila) =>
+            fila.nave.id === nave.id
+              ? { ...fila, nave, aptitud: puedeRecibirMision(nave, fila.misiones) }
+              : fila,
+          ),
+    );
+  }
+
   if (error) {
     return (
       <p className="aviso aviso--error" role="alert">
@@ -61,7 +73,13 @@ export default function ListaNaves({ version }: Props) {
   return (
     <ul className="flota">
       {filas.map(({ nave, misiones, aptitud }) => (
-        <TarjetaNave key={nave.id} nave={nave} misiones={misiones} aptitud={aptitud} />
+        <TarjetaNave
+          key={nave.id}
+          nave={nave}
+          misiones={misiones}
+          aptitud={aptitud}
+          onNaveActualizada={actualizarNave}
+        />
       ))}
     </ul>
   );
