@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280">
+  <rect width="1280" height="720" fill="#F2F2F2"/>
+  <rect width="1280" height="48" fill="#D9D9D9"/>
+  <text x="24" y="30" font-family="system-ui, sans-serif" font-size="14" fill="#212121">Lista de misiones · HU-1.5-CA1, HU-1.5-CA7</text>
+
+  <text x="24" y="88" font-family="system-ui, sans-serif" font-size="24" fill="#212121">Hangar Orbital</text>
+  <text x="24" y="112" font-family="system-ui, sans-serif" font-size="16" fill="#616161">Control de despegues</text>
+
+  <rect x="24" y="136" width="360" height="220" fill="none" stroke="#9E9E9E" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="204" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#9E9E9E">Registrar nave</text>
+  <rect x="24" y="372" width="360" height="220" fill="none" stroke="#9E9E9E" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="204" y="484" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#9E9E9E">Asignar misión</text>
+
+  <text x="408" y="160" font-family="system-ui, sans-serif" font-size="20" fill="#212121">Flota</text>
+  <rect x="408" y="176" width="848" height="500" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="1"/>
+
+  <text x="432" y="216" font-family="system-ui, sans-serif" font-size="20" fill="#212121">Orión</text>
+  <rect x="1160" y="196" width="68" height="24" fill="#D9D9D9"/>
+  <text x="1194" y="213" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#212121">Apta</text>
+  <text x="432" y="244" font-family="system-ui, sans-serif" font-size="14" fill="#616161">CARGUERA</text>
+  <rect x="432" y="264" width="720" height="8" fill="#D9D9D9"/>
+  <rect x="432" y="264" width="432" height="8" fill="#9E9E9E"/>
+  <rect x="612" y="262" width="2" height="12" fill="#616161"/>
+  <text x="1172" y="274" font-family="system-ui, sans-serif" font-size="14" fill="#212121">60 %</text>
+  <text x="432" y="304" font-family="system-ui, sans-serif" font-size="14" fill="#9E9E9E">MISIONES DESDE LA REVISIÓN</text>
+  <text x="432" y="328" font-family="system-ui, sans-serif" font-size="16" fill="#212121">1 de 3</text>
+  <text x="432" y="360" font-family="system-ui, sans-serif" font-size="14" fill="#616161">Operativa</text>
+
+  <rect x="432" y="380" width="168" height="40" fill="none" stroke="#616161" stroke-width="2"/>
+  <text x="516" y="405" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#212121">Ocultar misiones</text>
+
+  <rect x="432" y="436" width="800" height="56" fill="#F2F2F2"/>
+  <text x="448" y="470" font-family="system-ui, sans-serif" font-size="16" fill="#212121">Base Lunar Tycho</text>
+  <text x="720" y="470" font-family="system-ui, sans-serif" font-size="14" fill="#616161">Hoy · 3 días</text>
+  <rect x="1088" y="448" width="120" height="32" fill="none" stroke="#616161" stroke-width="2"/>
+  <text x="1148" y="469" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#212121">Completar</text>
+
+  <rect x="432" y="500" width="800" height="56" fill="#FFFFFF"/>
+  <text x="448" y="534" font-family="system-ui, sans-serif" font-size="16" fill="#212121">Estación Ceres</text>
+  <text x="720" y="534" font-family="system-ui, sans-serif" font-size="14" fill="#616161">10/12/2026 · 5 días</text>
+  <text x="1088" y="534" font-family="system-ui, sans-serif" font-size="14" fill="#9E9E9E">Despegue futuro</text>
+
+  <rect x="432" y="564" width="800" height="56" fill="#F2F2F2"/>
+  <text x="448" y="598" font-family="system-ui, sans-serif" font-size="16" fill="#212121">Puerto Europa</text>
+  <text x="720" y="598" font-family="system-ui, sans-serif" font-size="14" fill="#616161">Despegó el 15/11/2026 · 2 días</text>
+  <rect x="1088" y="576" width="120" height="32" fill="#D9D9D9"/>
+  <text x="1148" y="597" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#212121">Completada</text>
+</svg>

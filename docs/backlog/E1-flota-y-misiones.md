@@ -212,11 +212,58 @@ Como jefe de hangar, quiero ver las misiones pendientes de cada nave, para saber
 - **Alcance PRD:** A2 (necesaria para gestionar las misiones asignadas).
 
 ### HU-1.5 · Completar una misión
-**Estado:** por refinar.
+**Estado:** refinada.
 
 Como jefe de hangar, quiero marcar una misión pendiente como completada, para dejar constancia de que la nave volvió y anotar el combustible que le queda.
 - **Alcance PRD:** A2 (marcar como completadas). **Reglas:** R4. La misión ya sumó al contador al asignarse (R3), así que completarla no lo cambia.
-- **Nota:** anotar el combustible restante al completar es obligatorio (R4), pero esa parte pertenece a E2. Las dos historias tienen que salir juntas.
+- **Nota:** anotar el combustible restante al completar es obligatorio (R4). En esta historia se anota al completar; corregirlo en cualquier otro momento sigue siendo E2.
+- **Reglas del PRD que aplican:** R3 (completar no cambia el contador) y R4 (combustible obligatorio al completar; reemplaza el de la nave).
+- **Decisiones del cliente:**
+  - Una misión está pendiente o completada, como dice el supuesto del PRD.
+  - Solo se puede completar desde el día de despegue: hoy o una fecha ya pasada. Una misión con despegue futuro no ofrece la acción.
+  - Al completarla, el combustible restante es obligatorio y reemplaza el combustible de la nave (R4). El 0 % se acepta.
+  - Completar no cambia el contador de misiones (R3).
+  - La misión completada sigue en la lista de misiones de la nave, marcada como completada y sin ninguna acción. No se puede deshacer.
+  - Se completa desde la lista de misiones de la nave (spec 04), una misión a la vez, con confirmación: hay que anotar el combustible y pulsar «Confirmar».
+  - Tras confirmar, la tarjeta de la nave muestra el combustible nuevo y su aptitud sin recargar la página ni cerrar la lista.
+
+#### Criterios de aceptación
+1. **Lista con pendientes y completadas (HU-1.5-CA1)**
+   - DADO que una nave tiene una misión pendiente con despegue hoy o ya pasado, una misión pendiente con despegue futuro y una misión ya completada,
+   - CUANDO abro la lista de misiones de esa nave,
+   - ENTONCES veo las tres: la pendiente que ya puede completarse con un botón «Completar»; la de despegue futuro sin esa acción; y la completada marcada como completada, sin ninguna acción.
+2. **Pedir el combustible restante (HU-1.5-CA2)**
+   - DADO que la lista de misiones está abierta y hay al menos dos misiones pendientes que ya pueden completarse,
+   - CUANDO pulso «Completar» en una de ellas,
+   - ENTONCES veo un campo para el combustible restante, un botón primario «Confirmar» y un botón «Cancelar»; el «Completar» de las otras misiones queda deshabilitado; al pulsar «Cancelar» el formulario se cierra y ninguna misión se completa.
+3. **Error de validación (HU-1.5-CA3)**
+   - DADO que estoy pidiendo el combustible restante,
+   - CUANDO pulso «Confirmar» con el campo vacío o con solo espacios,
+   - ENTONCES la app no completa la misión, el formulario sigue abierto y me avisa «Indica el combustible de la nave.».
+   - DADO que estoy pidiendo el combustible restante,
+   - CUANDO pulso «Confirmar» con 120, un decimal u otro valor que no sea un entero entre 0 y 100,
+   - ENTONCES la app no completa la misión, el formulario sigue abierto y me avisa «El combustible debe ser un número entero entre 0 y 100.».
+4. **Guardando (HU-1.5-CA4)**
+   - DADO que el combustible restante es un entero entre 0 y 100,
+   - CUANDO pulso «Confirmar» y la app todavía no termina de guardar,
+   - ENTONCES veo «Guardando…», no puedo volver a confirmar ni completar otra misión, y la misión sigue pendiente.
+5. **Misión completada (HU-1.5-CA5)**
+   - DADO que confirmo con un combustible válido, incluido 0 %,
+   - CUANDO la app termina de guardar,
+   - ENTONCES esa misión aparece en la misma lista marcada como completada y sin ninguna acción; veo «Misión completada.»; el combustible de la nave pasa a ser el anotado; si es 0 %, la tarjeta la muestra no apta por combustible; el contador de misiones no cambia; no hay forma de deshacer.
+6. **Error de conexión (HU-1.5-CA6)**
+   - DADO que confirmo con un combustible válido,
+   - CUANDO Supabase no responde,
+   - ENTONCES veo «No se pudo completar la misión.»; la misión sigue pendiente con «Completar»; el combustible de la nave no cambia.
+7. **Uso en el celular a 390 px (HU-1.5-CA7)**
+   - DADO que uso la lista de misiones a 390 px de ancho,
+   - CUANDO recorro la lista, abro «Completar», veo un error de validación, «Guardando…», «Misión completada.» o «No se pudo completar la misión.»,
+   - ENTONCES el campo, «Completar», «Confirmar» y «Cancelar» y esos avisos caben y se pueden usar sin recortarse.
+
+#### Casos borde sin cubrir
+- Dos jefes completan a la vez la misma misión.
+- Completar una misión cuyo despegue es hoy, pero en otra zona horaria el día ya cambió.
+- Qué ocurre si, al completar, el combustible nuevo deja la nave no apta y otro jefe intenta asignarle una misión en ese instante.
 
 ## Historias fuera de alcance
 Se dejan anotadas para no perderlas, pero no entran en el MVP.
