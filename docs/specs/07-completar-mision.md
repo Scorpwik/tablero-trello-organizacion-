@@ -92,4 +92,5 @@ El frontend no tiene tests automáticos de componentes: la interfaz se verifica 
 **T-22 y T-23:** `npm test` 70 de 70; `npm run build` sin errores.
 
 ### Pendientes
-Ninguno.
+- La migración 004 sigue la spec (`security invoker` y `update` de `anon` en `misiones.estado` y `naves.combustible`). Eso deja el REST de `anon` con permiso de actualizar esas columnas por separado; no se cambió a `security definer` porque la spec no lo pide.
+- El wireframe de escritorio muestra el texto «Despegue futuro» en misiones que aún no se pueden completar. CA1 y el README solo exigen no mostrar «Completar»; la captura de lista se hizo con dos misiones ya completables, como pide la sección de verificación.
